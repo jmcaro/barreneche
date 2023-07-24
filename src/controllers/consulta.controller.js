@@ -25,16 +25,16 @@ export const createConsulta = async(req, res)=>{
         const createConsulta = await Consulta.create({
             correo:faker.internet.email(),
             telefono:faker.phone.number(),
-            consulta:faker.person.bio(),
-            tipo_persona:faker.animal.cow(),
-            primer_nombre:faker.person.firstName(),
-            segundo_nombre:faker.person.firstName(),
-            primer_apellido:faker.person.lastName(),
-            segundo_apellido:faker.person.lastName(),
-            tipo_identificacion:faker.person.sexType(),
-            numero_identificacion:faker.number.int(),
+            consulta:faker.commerce.productDescription(),
+            tipoPersona:faker.animal.cow(),
+            primerNombre:faker.person.firstName(),
+            segundoNombre:faker.person.firstName(),
+            primerApellido:faker.person.lastName(),
+            segundoApellido:faker.person.lastName(),
+            tipoIdentificacion:faker.person.sexType(),
+            numeroIdentificacion:faker.number.int(),
             sexo:faker.person.sexType(),
-            categoriaId: 1,
+            //categoriaId: 1,
         });
         res.status(200).json({
             message: createConsulta.consulta + " fue creado con éxito"
@@ -47,7 +47,12 @@ export const createConsulta = async(req, res)=>{
 export const readConsulta = async (req, res)=>{
     try {
         const id = req.params.id;
-        const consulta = await Consulta.findByPk(id)
+        const consulta = await Consulta.findByPk(id,{
+            include:{
+                all:true,
+                nested:true
+            }
+        })
         res.status(302).json({consulta});
     } catch (error) {
         res.status(500).json({error});
@@ -66,7 +71,7 @@ export const updateConsulta = async (req, res)=>{
             }
         });
         res.status(200).json({
-            message: consulta + " fue actualizado con éxito"
+            message: updateConsulta + " fue actualizado con éxito"
         })
     } catch (error) {
         res.status(500).json({error});

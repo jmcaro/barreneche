@@ -5,10 +5,9 @@ class Categoria extends Model {};
 
 Categoria.init({
     id:{
-        type: DataTypes.INTEGER,
-        //defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-        autoIncrement: true,
         
     },
     categoria:{
@@ -17,7 +16,7 @@ Categoria.init({
     }
 },{ sequelize,
     modelName:"Categoria",
-    tableName: 'Categorias'
+    tableName: 'categorias'
 });
 
 export default Categoria;

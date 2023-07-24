@@ -25,6 +25,12 @@ app.use(categorias);
 import consulta from '../routes/consultas.routes.js';
 app.use(consulta);
 
+import auth from '../routes/auth.routes.js';
+app.use(auth);
+
+import usuarios from '../routes/usuarios.routes.js';
+app.use(usuarios);
+
 export default app;
 
 

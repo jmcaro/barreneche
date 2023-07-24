@@ -1,5 +1,4 @@
 import express from "express";
-import Rol from "../models/Roles.js";
 import * as roles from '../controllers/rol.controller.js';
 
 
