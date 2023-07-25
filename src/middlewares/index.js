@@ -1,2 +1,2 @@
-import { verifyToken } from "./authJWS.js";
-export {verifyToken};
+import * as auth from "./authJWS.js";
+export default auth;

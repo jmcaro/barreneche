@@ -1,13 +1,13 @@
 import express from "express";
-import Consulta from "../models/Consultas.js";
 import * as consultas from '../controllers/consulta.controller.js';
+import auth from '../middlewares/index.js';
 
 
 
 const router = express.Router();
 router.route("/consultas")
-.get(consultas.getConsultas)
-.post(consultas.createConsulta);
+.get([auth.verifyToken || auth.isAdmin],consultas.getConsultas)
+.post([auth.verifyToken || auth.isProfe],consultas.createConsulta);
 
 
 router.route("/consultas/:id")

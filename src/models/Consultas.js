@@ -53,10 +53,10 @@ Consulta.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    estadoConsulta:{
-        type: DataTypes.STRING,
-        allowNull: true
-    },
+    estado: {
+        type: DataTypes.ENUM('Pendiente de revisión', 'En proceso', 'Esperando información adicional', 'En revisión', 'Resuelta', 'Cerrada', 'Rechazada', 'Derivada'),
+        defaultValue: 'Pendiente de revisión',
+      },
 },{ sequelize,
     modelName:"Consulta",
     tableName: 'consultas'

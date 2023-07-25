@@ -28,3 +28,33 @@ export const verifyToken = async (req, res, next) => {
         
     }
 };
+export const isAdmin = async (req, res, next)=>{
+    const user = await Usuario.findByPk(req.userID,{
+        include:{all:true,nested:true},        
+    })
+    //console.log(user.roles.rol);
+    try {
+        if (user.roles.rol === "Administrador") {
+         return next();
+        } else{
+            return res.status(403).json({message: "Se requieren permisos de Administrador"})
+        }      
+    } catch (error) {
+       return res.status(403).json({message: "Se requieren permisos de Administrador"})        
+    }    
+};
+export const isProfe = async (req, res, next)=>{
+    const user = await Usuario.findByPk(req.userID,{
+        include:{all:true,nested:true},        
+    })
+    //console.log(user.roles.rol);
+    try {
+        if (user.roles.rol === "Profesor") {
+         return next();
+        } else{
+            return res.status(403).json({message: "Se requieren permisos de Profesor"})
+        }      
+    } catch (error) {
+       return res.status(403).json({message: "Se requieren permisos de Profesor"})        
+    }    
+};
