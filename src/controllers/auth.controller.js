@@ -26,28 +26,32 @@ const tokenizador = (payload) =>{
 
 export const signUp = async (req,res)=>{
     try {
-        const {email} = req.body;
+        const user = req.body;
         await Usuario.sync();
         const createUsuario = await Usuario.create({
-            tipoDocumento: faker.person.prefix(),
-            numeroDocumento: faker.number.int(9999999999),  
-            correo:faker.internet.email(),
-            password: await encriptar('123456789'),
-            telefono:faker.phone.number(),
-            primerNombre:faker.person.firstName(),
-            segundoNombre:faker.person.middleName(),
-            primerApellido: faker.person.lastName(),
-            segunApellido: faker.person.lastName(),
-            nacimento: faker.date.birthdate(),
-            isActive: faker.datatype.boolean(0.9)
+            tipoDocumento: user.tipoDocumento,
+            numeroDocumento: user.numeroDocumento,  
+            correo: user.correo,
+            password: await encriptar(user.password),
+            telefono:user.telefono,
+            primerNombre:user.primerNombre,
+            segundoNombre:user.segundoNombre,
+            primerApellido: user.primerApellido,
+            segunApellido: user.segundoApellido,
+            nacimento: user.nacimiento,
+            isActive: true
         });
+        const token = tokenizador(createUsuario.id);
+        res.cookie('token',token),
         res.status(200).json({
-            token : tokenizador(createUsuario.id),
             message : createUsuario.correo +" creado en nuestro sistema"
         })
         
     } catch (error) {
-        res.status(500).json({error});
+        res.status(500).json({
+            message: "Ha ocurrido un error",
+            error
+        });
     }
 };
 
@@ -69,9 +73,10 @@ export const signIn = async (req,res)=>{
         if (!passwordCheck) {
             res.status(400).json({message: "Datos incorrectos"})
         }   else {
+            const token = tokenizador(userCheck.id);
+            res.cookie("token", token)
             res.status(200).json({
-                message: passwordCheck,
-                token: tokenizador(userCheck.id)
+                message: "Credenciales Correctas, Bienevenido al Consultorio",
             });
         } 
 
