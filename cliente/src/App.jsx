@@ -7,21 +7,21 @@ import StickyNavbar from "./components/NavbarSticky";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 
-
 function App() {
   return (
     <>
-      <StickyNavbar />
+      {/* <StickyNavbar /> */}
+
       <Routes>
-        <Route path="/" element={<HomePage/>} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/roles" element={<CategoriesPage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/cat/create" element={<CategoriesForm />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<h1><RegisterPage/></h1>} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </>
   );
-} 
+}
 
 export default App;

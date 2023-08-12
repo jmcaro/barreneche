@@ -44,7 +44,7 @@ export const signUp = async (req,res)=>{
         const token = tokenizador(createUsuario.id);
         res.cookie('token',token),
         res.status(200).json({
-            message : createUsuario.correo +" creado en nuestro sistema"
+            user: createUsuario,
         })
         
     } catch (error) {

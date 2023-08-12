@@ -1,6 +1,9 @@
 import { registerUser } from "../api/auth";
 import { useForm } from "react-hook-form";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import Select from "react-select";
+import { useEffect } from "react";
 import {
   Card,
   Input,
@@ -20,9 +23,17 @@ const tipoID = [
 ];
 
 export default function RegisterPage() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState:{errors} } = useForm();
+  const { signup, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+ 
+  useEffect(() => {
+    if(isAuthenticated) navigate("/")
+  },[isAuthenticated])
+
   const onSubmit = handleSubmit(async (values) => {
-    await registerUser(values);
+    /* await registerUser(values); */
+    signup(values);
   });
 
   return (
@@ -49,9 +60,13 @@ export default function RegisterPage() {
             </select>
             <Input
               size="lg"
+              error={errors.numeroDocumento ? true : false}
               label="# Identificación"
               {...register("numeroDocumento", { required: true })}
             />
+            {
+              errors.numeroDocumento && <p role="alert">Documento requerido</p>
+            }
             <Input
               type="email"
               size="lg"
