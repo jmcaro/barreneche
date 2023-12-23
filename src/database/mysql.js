@@ -1,5 +1,5 @@
 /* const { Sequelize } = require('sequelize'); */
-import { Sequelize } from 'sequelize';
+import { Sequelize, DataTypes, Model } from 'sequelize';
 export const sequelize = new Sequelize('consultorio', 'root', '#Boyer88', {
     host: 'localhost',
     dialect: 'mysql',
@@ -14,4 +14,3 @@ export const test = async function(){
        console.error("Ocurrio un error", error);
     }
 };
-

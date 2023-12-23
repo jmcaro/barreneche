@@ -4,7 +4,7 @@ const app = require('./app/app'); */
 
 import dot from 'dotenv';
 import {sequelize, test} from './database/mysql.js';
-import app from './app/app.js';
+import app from './app.js';
 
 const PORT = process.env.PORT || 3000;
 

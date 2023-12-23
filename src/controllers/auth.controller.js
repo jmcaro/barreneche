@@ -83,3 +83,9 @@ export const signIn = async (req,res)=>{
     }
     
 };
+export const login = (req,res) =>{
+    return res.render('login',{})
+};
+export const register = (req,res) =>{
+    return res.render('register',{})
+};
