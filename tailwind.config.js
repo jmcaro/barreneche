@@ -2,7 +2,12 @@
 export default {
   content: ["./src/**/*.{html,js,hbs}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "orange-ua":"#E16F23",
+        "blue-ua":"#1F3B75"
+      }
+    },
   },
   plugins: [],
 }
