@@ -1,3 +1,3 @@
-export const getHome = (req,res) =>{
-    return res.render('index',{})
+export const getHome = (req, res) => {
+  return res.render("user/index", {});
 };

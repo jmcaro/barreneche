@@ -18,18 +18,20 @@
         >
           Login
         </label>
-        <form method="#" action="#" class="mt-10">
+        <form method="POST" action="/signin" class="mt-10">
 
           <div>
             <input
-              type="email"
-              placeholder="Correo electronico"
+              name="user"
+              type="text"
+              placeholder="# Documento"
               class="mt-1 px-2 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
             />
           </div>
 
           <div class="mt-7">
             <input
+              name="password"
               type="password"
               placeholder="Contraseña"
               class="mt-1 px-2 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"

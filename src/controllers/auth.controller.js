@@ -22,7 +22,7 @@ const tokenizador = (payload) => {
 export const signUp = async (req, res) => {
   try {
     const user = req.body;
-    console.log(user);
+    //console.log(user);
     await Usuario.sync();
     const createUsuario = await Usuario.create({
       tipoDocumento: user.tipoDocumento,
@@ -60,13 +60,13 @@ export const signIn = async (req, res) => {
     where: { numeroDocumento: user },
   });
   if (!userCheck) {
-    res.status(400).json({ message: "Datos incorrectos" });
+    res.status(400).json({ message: "Datos incorrectos 1" });
   } else {
     //res.status(200).json(userCheck);
     const passwordCheck = await desencriptar(password, userCheck.password);
     console.log(passwordCheck);
     if (!passwordCheck) {
-      res.status(400).json({ message: "Datos incorrectos" });
+      res.status(400).json({ message: "Datos incorrectos 2" });
     } else {
       const token = tokenizador(userCheck.id);
       res.cookie("token", token);
@@ -81,4 +81,7 @@ export const login = (req, res) => {
 };
 export const register = (req, res) => {
   return res.render("user/register", {});
+};
+export const dashboard = (req, res) => {
+  return res.render("user/dashboard", {});
 };
