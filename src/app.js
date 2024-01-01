@@ -17,6 +17,10 @@ app.use(express.static(assets));
 // config view engine
 const hbs = exphbs.create({
   extname: ".hbs",
+  runtimeOptions: {
+    allowProtoPropertiesByDefault: true,
+    allowedProtoMethodsByDefault: true,
+  },
 });
 app.engine(".hbs", hbs.engine);
 app.set("view engine", ".hbs");

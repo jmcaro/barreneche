@@ -6,20 +6,28 @@ export const getRoles = async (req, res) => {
     const roles = await Rol.findAll();
     //res.status(200).json({ roles });
     res.render("roles/roles", { roles });
+    //console.log(roles);
   } catch (error) {
     res.status(500).json({ error });
   }
 };
+export const formCreateRol = (req, res) => {
+  //res.render("roles/create", {});
+  res.render("roles/create");
+};
+
 export const createRol = async (req, res) => {
+  //console.log(req.body);
   try {
     const { rol } = req.body;
     await Rol.sync();
     const createRol = await Rol.create({
       rol: rol,
     });
-    res.status(200).json({
+    /* res.status(200).json({
       message: createRol.rol + " fue creado con éxito",
-    });
+    }); */
+    res.redirect("/roles");
   } catch (error) {
     res.status(500).json({ error });
   }
@@ -58,6 +66,7 @@ export const updateRol = async (req, res) => {
 };
 
 export const deleteRol = async (req, res) => {
+  //console.log(req.params.id);
   try {
     const id = req.params.id;
     await Rol.destroy({
@@ -65,9 +74,7 @@ export const deleteRol = async (req, res) => {
         id: id,
       },
     });
-    res.status(204).json({
-      message: "Rol eliminado con éxito",
-    });
+    res.redirect("/roles");
   } catch (error) {
     res.status(500).json({ error });
   }

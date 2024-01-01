@@ -4,11 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        "orange-ua":"#E16F23",
-        "blue-ua":"#1F3B75"
-      }
+        "orange-ua": "#E16F23",
+        "blue-ua": "#1F3B75",
+      },
     },
   },
-  plugins: [],
-}
-
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark", "fantasy"],
+  },
+};
