@@ -4,6 +4,8 @@ import cors from "cors";
 import exphbs from "express-handlebars";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
+import methodOverride from "method-override";
+import * as helpers from "./assets/js/utils.js";
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -21,6 +23,7 @@ const hbs = exphbs.create({
     allowProtoPropertiesByDefault: true,
     allowedProtoMethodsByDefault: true,
   },
+  helpers,
 });
 app.engine(".hbs", hbs.engine);
 app.set("view engine", ".hbs");
@@ -31,6 +34,7 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
 
 //Routes
 import roles from "./routes/roles.routes.js";

@@ -45,8 +45,11 @@ export const readRol = async (req, res) => {
 
 export const updateRol = async (req, res) => {
   try {
-    const { rol } = req.body;
     const id = req.params.id;
+    //console.log(id);
+    //const roles = await Rol.findByPk(id);
+    const { rol } = req.body;
+    console.log(rol);
     const updateRol = await Rol.update(
       {
         rol: rol,
@@ -57,9 +60,8 @@ export const updateRol = async (req, res) => {
         },
       }
     );
-    res.status(200).json({
-      message: rol + " fue actualizado con éxito",
-    });
+    //console.log(updateRol);
+    res.redirect("/roles");
   } catch (error) {
     res.status(500).json({ error });
   }
