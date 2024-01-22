@@ -14,6 +14,10 @@ Categoria.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    descripcion: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   { sequelize, modelName: "Categoria", tableName: "categorias" }
 );

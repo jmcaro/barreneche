@@ -5,9 +5,11 @@ import exphbs from "express-handlebars";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import methodOverride from "method-override";
-import * as helpers from "./assets/js/utils.js";
+import * as helpers from "./assets/js/utilsHBS.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
+app.use(cookieParser());
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 //public files

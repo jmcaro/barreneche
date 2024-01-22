@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import Usuario from "../models/Usuarios.js";
+import Rol from "../models/Roles.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -36,12 +37,10 @@ export const signUp = async (req, res) => {
       segunApellido: user.segundoApellido,
       nacimento: user.nacimiento,
       isActive: true,
+      rolesId: user.rolesId,
     });
     const token = tokenizador(createUsuario.id);
-    res.cookie("token", token),
-      res.status(200).json({
-        user: createUsuario,
-      });
+    res.cookie("token", token), res.redirect("/usuarios");
   } catch (error) {
     res.status(500).json({
       message: "Ha ocurrido un error",
@@ -70,17 +69,16 @@ export const signIn = async (req, res) => {
     } else {
       const token = tokenizador(userCheck.id);
       res.cookie("token", token);
-      res.status(200).json({
-        message: "Credenciales Correctas, Bienevenido al Consultorio",
-      });
+      res.redirect("/usuarios");
     }
   }
 };
 export const login = (req, res) => {
   return res.render("user/login", {});
 };
-export const register = (req, res) => {
-  return res.render("user/register", {});
+export const register = async (req, res) => {
+  const roles = await Rol.findAll();
+  return res.render("user/register", { roles });
 };
 export const dashboard = (req, res) => {
   return res.render("user/dashboard", {});

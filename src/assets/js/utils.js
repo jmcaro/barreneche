@@ -1,12 +1,8 @@
-function yell(msg) {
-  return msg.toUpperCase();
-}
-
-function deleteConfirmation(id) {
+function deleteConfirmation(id, path) {
   let rol = document.getElementById("deleteModal");
   rol.showModal();
   let form = document.getElementById("formDeleteRol");
-  form.setAttribute("action", `/roles/delete/${id}`);
+  form.setAttribute("action", `${path}/${id}`);
 }
 
 function updateFillForm(id) {

@@ -1,9 +1,10 @@
 {{>sidebar}}
+{{>roles/deleteConfirmationModal}}
 <div class="m-1 p-3 w-full h-auto border rounded-md bg-slate-100">
     <div class="flex items-center">
         <h1 class="text-2xl font-semibold ml-4 ">Usuarios</h1>
-        <button onclick="my_modal_1.showModal()" class="btn btn-sm btn-primary ml-4">Crear <svg
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+        <a href="/register" class="btn btn-sm btn-primary ml-4">Crear <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                 <path fill-rule="evenodd"
                     d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
                     clip-rule="evenodd" />
@@ -11,15 +12,16 @@
 
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
-        </button>
+        </a>
     </div>
     <div class="divider"></div>
     <div class="overflow-x-auto">
-        <table class="table table-zebra">
+        <table class="table table-zebra bg-white">
             <!-- head -->
             <thead>
                 <tr>
-                    <th></th>
+                    <th>#</th>
+                    <th>Foto</th>
                     <th>Nombres</th>
                     <th>Rol</th>
                     <th>Acciones</th>
@@ -30,11 +32,18 @@
                 {{#each usuarios}}
                 <tr class="hover">
                     <th>{{@index}}</th>
+                    <td>
+                        <div class="avatar">
+                            <div class="w-12 rounded-full">
+                                <img src="https://source.unsplash.com/random/100?sig={{primerNombre}}" />
+                            </div>
+                        </div>
+                    </td>
                     <td class="capitalize">{{primerNombre}} {{primerApellido}}</td>
                     <td>{{roles.rol}}</td>
                     <td>
                         <div class="inline-flex items-center rounded-md shadow-sm">
-                            <button
+                            <a href="/usuarios/{{id}}"
                                 class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
                                 <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
@@ -42,7 +51,7 @@
                                             d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                     </svg>
                                 </span>
-                            </button>
+                            </a>
                             <button
                                 class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border-y border-slate-200 font-medium px-4 py-2 inline-flex space-x-1 items-center">
                                 <span>
@@ -55,7 +64,7 @@
                                     </svg>
                                 </span>
                             </button>
-                            <button
+                            <button onclick=deleteConfirmation('{{id}}','/usuarios/delete')
                                 class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -73,3 +82,4 @@
         </table>
     </div>
 </div>
+<script src="/js/utils.js"></script>
