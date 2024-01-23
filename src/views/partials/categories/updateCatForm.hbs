@@ -1,0 +1,24 @@
+<dialog id="updateModal" class="modal">
+    <div class="modal-box">
+        <h2 class="card-title text-center justify-center">Actualizar Categoría</h2>
+        <div class="modal-action">
+            <form id="formUpdateCat" class="w-full max-w-sm mx-auto bg-white p-8 rounded-md" method="post">
+                <input type="hidden" name="_method" value="PUT" />
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nombre</label>
+                    <input
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                        type="text" id="categoria" name="categoria" placeholder="Categoría">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Descripción</label>
+                    <input
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                        type="text" id="descripcion" name="descripcion" placeholder="Descripción">
+                </div>
+                <button class="btn btn-secondary w-full hover:bg-indigo-600 transition duration-300"
+                    type="submit">Actualizar</button>
+            </form>
+        </div>
+    </div>
+</dialog>

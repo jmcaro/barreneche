@@ -17,3 +17,18 @@ function updateFillForm(id) {
   //form.setAttribute("value", rolName);
   rol.showModal();
 }
+function updateFillFormCat(id) {
+  const cat = document.getElementById("updateModal");
+  const catName = document.getElementById(id).textContent;
+  const catDescription = document.getElementById(id + "1").textContent;
+  //console.log(rolName);
+  const catNameChange = cat.querySelector("#categoria");
+  const catNDescriptionChange = cat.querySelector("#descripcion");
+  catNameChange.setAttribute("value", catName);
+  catNDescriptionChange.setAttribute("value", catDescription);
+  catNameChange.select();
+  const form = document.getElementById("formUpdateCat");
+  form.setAttribute("action", `/categorias/edit/${id}?_method=PUT`);
+  //form.setAttribute("value", rolName);
+  cat.showModal();
+}
