@@ -24,7 +24,8 @@ Consulta.init(
     },
     tipoPersona: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: "NULL",
     },
     primerNombre: {
       type: DataTypes.STRING,
@@ -41,6 +42,10 @@ Consulta.init(
     segundoApellido: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    razonSocial: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     tipoIdentificacion: {
       type: DataTypes.STRING,
