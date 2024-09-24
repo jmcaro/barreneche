@@ -1,5 +1,6 @@
 import express from "express";
 import * as consultas from "../controllers/consulta.controller.js";
+import * as consultas_usuarios from "../controllers/usuarios_consulta.controller.js";
 import auth from "../middlewares/index.js";
 
 const router = express.Router();
@@ -15,5 +16,9 @@ router
   .get(consultas.readConsulta)
   .put(consultas.updateConsulta)
   .delete(consultas.deleteConsulta);
+
+router
+  .route("/consultas_usuarios")
+  .get(consultas_usuarios.getUsuariosConsultas);
 
 export default router;

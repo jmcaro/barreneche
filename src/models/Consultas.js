@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/mysql.js";
 import Categoria from "./Categorias.js";
+import Usuario from "./Usuarios.js";
 class Consulta extends Model {}
 
 Consulta.init(

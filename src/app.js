@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import methodOverride from "method-override";
 import * as helpers from "./assets/js/utilsHBS.js";
 import cookieParser from "cookie-parser";
+//import UsuariosConsulta from "../src/models/UsuariosConsulta.js";
 
 const app = express();
 app.use(cookieParser());
