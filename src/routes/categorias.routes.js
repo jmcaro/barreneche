@@ -6,7 +6,7 @@ const router = express.Router();
 
 router
   .route("/categorias")
-  .get([auth.verifyToken, auth.isAdmin], categorias.getCategorias)
+  .get(categorias.getCategorias)
   .post(categorias.createCategoria);
 
 router.route("/categorias/edit/:id").put(categorias.updateCategoria);

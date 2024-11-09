@@ -1,7 +1,5 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/mysql.js";
-import Rol from "./Roles.js";
-import Consulta from "./Consultas.js";
 
 class Usuario extends Model {}
 
@@ -61,11 +59,4 @@ Usuario.init(
   },
   { sequelize, modelName: "Usuario", tableName: "usuarios" }
 );
-
-// Foreign Association
-
-Usuario.belongsTo(Rol, {
-  as: "roles",
-});
-
 export default Usuario;

@@ -8,6 +8,11 @@ import methodOverride from "method-override";
 import * as helpers from "./assets/js/utilsHBS.js";
 import cookieParser from "cookie-parser";
 //import UsuariosConsulta from "../src/models/UsuariosConsulta.js";
+import { sequelize } from "./database/mysql.js";
+import "../src/models/Consultas.js";
+import "../src/models/Usuarios.js";
+import "../src/models/UsuariosConsulta.js";
+import "../src/models/associations.js";
 
 const app = express();
 app.use(cookieParser());

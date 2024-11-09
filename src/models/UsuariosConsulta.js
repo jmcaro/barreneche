@@ -1,10 +1,9 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/mysql.js";
-import Usuario from "./Usuarios.js";
-import Consulta from "./Consultas.js";
 
-class UsuariosConsulta extends Model {}
-UsuariosConsulta.init(
+class UserConsultation extends Model {}
+
+UserConsultation.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -12,13 +11,16 @@ UsuariosConsulta.init(
       primaryKey: true,
     },
   },
-  { sequelize, modelName: "UsuariosConsulta", tableName: "usuario_consulta" }
+  {
+    sequelize,
+    modelName: "UserConsultation",
+    tableName: "user_consultation",
+    timestamps: true,
+  }
 );
-Usuario.belongsToMany(Consulta, { through: UsuariosConsulta });
-Consulta.belongsToMany(Usuario, { through: UsuariosConsulta });
-
 /* await Usuario.sync();
 await Consulta.sync();
 await UsuariosConsulta.sync();
  */
-export default UsuariosConsulta;
+//await UserConsultation.sync();
+export default UserConsultation;

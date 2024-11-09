@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/mysql.js";
-import Categoria from "./Categorias.js";
-import Usuario from "./Usuarios.js";
+
 class Consulta extends Model {}
 
 Consulta.init(
@@ -76,9 +75,4 @@ Consulta.init(
   },
   { sequelize, modelName: "Consulta", tableName: "consultas" }
 );
-
-Consulta.belongsTo(Categoria, {
-  as: "categoria",
-});
-
 export default Consulta;
