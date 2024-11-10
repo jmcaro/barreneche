@@ -28,6 +28,8 @@
                     <th>Estado</th>
                     <th>Consulta</th>
                     <th>Correo</th>
+                    <th>Lider</th>
+                    <th>Estudiante</th>
                     <th>Acciones</th>
 
                 </tr>
@@ -37,7 +39,7 @@
                 {{#each consultas}}
                 <tr class="hover">
                     <th>{{@index}}</th>
-                    <td>{{createdAt}}</td>
+                    <td>{{formatDate createdAt "DD/MM/YYYY"}}</td>
                     <td>{{categoria.categoria}}</td>
                     <td class="capitalize">{{primerNombre}} {{primerApellido}}</td>
                     <td>{{razonSocial}}</td>
@@ -47,6 +49,34 @@
                     </td>
                     <td>{{consulta}}</td>
                     <td>{{correo}}</td>
+
+
+                    <!-- Columna Líder -->
+                    <td>
+                        {{#if (hasAnyRole this.Usuarios "Profesor" "Administrador")}}
+                        {{#each this.Usuarios}}
+                        {{#if (or (eq this.roles.rol "Profesor") (eq this.roles.rol "Administrador"))}}
+                        {{this.primerNombre}} {{this.primerApellido}} <br>
+                        {{/if}}
+                        {{/each}}
+                        {{else}}
+                        Sin Asignar
+                        {{/if}}
+                    </td>
+
+                    <!-- Columna Estudiante -->
+                    <td>
+                        {{#if (hasRole this.Usuarios "Estudiante")}}
+                        {{#each this.Usuarios}}
+                        {{#if (eq this.roles.rol "Estudiante")}}
+                        {{this.primerNombre}} {{this.primerApellido}} <br>
+                        {{/if}}
+                        {{/each}}
+                        {{else}}
+                        Sin Asignar
+                        {{/if}}
+                    </td>
+
                     <td>
                         <div class="inline-flex items-center rounded-md shadow-sm">
                             <a href="/usuarios/{{id}}"

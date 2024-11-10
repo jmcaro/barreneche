@@ -1,4 +1,5 @@
 import express from "express";
+
 import morgan from "morgan";
 import cors from "cors";
 import exphbs from "express-handlebars";
@@ -7,16 +8,11 @@ import { fileURLToPath } from "url";
 import methodOverride from "method-override";
 import * as helpers from "./assets/js/utilsHBS.js";
 import cookieParser from "cookie-parser";
-//import UsuariosConsulta from "../src/models/UsuariosConsulta.js";
-import { sequelize } from "./database/mysql.js";
-import "../src/models/Consultas.js";
-import "../src/models/Usuarios.js";
-import "../src/models/UsuariosConsulta.js";
 import "../src/models/associations.js";
-
 const app = express();
 app.use(cookieParser());
 const __dirname = dirname(fileURLToPath(import.meta.url));
+import moment from "moment";
 
 //public files
 const assets = resolve(__dirname + "/assets");
@@ -31,7 +27,22 @@ const hbs = exphbs.create({
     allowProtoPropertiesByDefault: true,
     allowedProtoMethodsByDefault: true,
   },
-  helpers,
+  helpers: {
+    formatDate: (date, format) => {
+      return moment(date).format(format);
+    },
+    eq: (a, b) => a === b,
+    or: (a, b) => a || b,
+    // Helper para verificar si un usuario tiene un rol específico
+    hasRole: (usuarios, rol) => {
+      return usuarios.some((usuario) => usuario.roles.rol === rol);
+    },
+    // Helper para verificar si hay un usuario con cualquiera de los roles especificados
+    hasAnyRole: (usuarios, ...roles) => {
+      roles.pop(); // Elimina el último argumento adicional que Handlebars agrega
+      return usuarios.some((usuario) => roles.includes(usuario.roles.rol));
+    },
+  },
 });
 app.engine(".hbs", hbs.engine);
 app.set("view engine", ".hbs");

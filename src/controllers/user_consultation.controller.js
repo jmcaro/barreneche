@@ -1,11 +1,11 @@
-import UserConsultation from "../models/UsuariosConsulta.js";
+import UserConsultation from "../models/UserConsultation.js";
 import Usuario from "../models/Usuarios.js";
 import Consulta from "../models/Consultas.js";
 
 export const getUserConsultation = async (req, res) => {
   try {
     const user_consultation = await UserConsultation.findAll({
-      include: [Usuario, Consulta],
+      include: [Usuario],
     });
     // Pasar datos a la vista
     res.render("consultas/user_consultation", { user_consultation });

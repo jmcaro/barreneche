@@ -1,19 +1,22 @@
 import { fakerES_MX as faker } from "@faker-js/faker";
 import Consulta from "../models/Consultas.js";
 import Categoria from "../models/Categorias.js";
+import Usuario from "../models/Usuarios.js";
 
 export const getConsultas = async (req, res) => {
   try {
     const consultas = await Consulta.findAll({
       //  raw:true,
-      include: {
-        all: true,
-        nested: true,
-      },
+      include: [
+        {
+          all: true,
+          nested: true,
+        },
+      ],
     });
     res.render("consultas/consultas", { consultas });
-    /* console.log(consultas);
-    res.status(200).json({ consultas }); */
+    //console.log(consultas);
+    //res.status(200).json({ consultas });
   } catch (error) {
     res.status(500).json({ error });
   }
