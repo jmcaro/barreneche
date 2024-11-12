@@ -5,8 +5,9 @@ import Consulta from "../models/Consultas.js";
 export const getUserConsultation = async (req, res) => {
   try {
     const user_consultation = await UserConsultation.findAll({
-      include: [Usuario],
+      include: [Usuario, Consulta],
     });
+    res.status(200).json({ user_consultation });
     // Pasar datos a la vista
     res.render("consultas/user_consultation", { user_consultation });
   } catch (error) {

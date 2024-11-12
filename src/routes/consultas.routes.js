@@ -5,6 +5,10 @@ import auth from "../middlewares/index.js";
 
 const router = express.Router();
 router.route("/consultas/create").get(consultas.createFormConsulta);
+router
+  .route("/consultas/assignconsultation")
+  .get(consultas.getAssignConsultation);
+router.route("/consultas/assign").post(consultas.assignUserConsultation);
 
 router
   .route("/consultas")
@@ -18,5 +22,11 @@ router
   .delete(consultas.deleteConsulta);
 
 router.route("/user_consultation").get(user_consultation.getUserConsultation);
+
+// Ruta para mostrar el formulario de edición
+router.get("/consultas/edit/:id", consultas.readFormConsulta); // Reutilizamos `readConsulta` para mostrar la vista con los datos actuales
+
+// Ruta para manejar la actualización
+router.put("/consultas/edit/:id", consultas.updateConsulta);
 
 export default router;

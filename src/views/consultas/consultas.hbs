@@ -13,14 +13,25 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
         </a>
+        <button onclick="assign_modal.showModal()" class="btn btn-sm btn-secondary ml-4">Asignar <svg
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path fill-rule="evenodd"
+                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
+                    clip-rule="evenodd" />
+            </svg>
+
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+        </button>
     </div>
     <div class="divider"></div>
+    {{>consultation/assignUserForm}}
     <div class="overflow-x-auto">
         <table class="table table-zebra table-xs bg-white">
             <!-- head -->
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>#Ticket</th>
                     <th>Fecha de consulta</th>
                     <th>Categoria</th>
                     <th>Nombres</th>
@@ -38,13 +49,15 @@
                 <!-- row 1 -->
                 {{#each consultas}}
                 <tr class="hover">
-                    <th>{{@index}}</th>
+                    <th>{{ticketNumber}}</th>
                     <td>{{formatDate createdAt "DD/MM/YYYY"}}</td>
-                    <td>{{categoria.categoria}}</td>
+                    <td class="capitalize">{{categoria.categoria}}</td>
                     <td class="capitalize">{{primerNombre}} {{primerApellido}}</td>
-                    <td>{{razonSocial}}</td>
+                    <td class="capitalize">{{razonSocial}}</td>
                     <td>
-                        <div class="badge badge-accent badge-lg text-xs text-slate-100 leading-3 text-center">{{estado}}
+                        <div
+                            class="capitalize badge badge-accent badge-lg text-xs text-slate-100 leading-3 text-center tracking-tight">
+                            {{estado}}
                         </div>
                     </td>
                     <td>{{consulta}}</td>
@@ -79,7 +92,7 @@
 
                     <td>
                         <div class="inline-flex items-center rounded-md shadow-sm">
-                            <a href="/usuarios/{{id}}"
+                            <a href="/consultas/edit/{{id}}"
                                 class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
                                 <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
@@ -88,7 +101,7 @@
                                     </svg>
                                 </span>
                             </a>
-                            <button
+                            <a href="/consultas/{{id}}"
                                 class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border-y border-slate-200 font-medium px-4 py-2 inline-flex space-x-1 items-center">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -99,7 +112,7 @@
                                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </span>
-                            </button>
+                            </a>
                             <button onclick=deleteConfirmation('{{id}}','/usuarios/delete')
                                 class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
                                 <span>

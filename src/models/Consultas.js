@@ -1,5 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/mysql.js";
+import Usuario from "../models/Usuarios.js";
+import Response from "../models/Response.js";
 
 class Consulta extends Model {}
 
@@ -17,6 +19,13 @@ Consulta.init(
     telefono: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    // Campo ticketNumber autoincremental
+    ticketNumber: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true, // Esto hace que sea autoincremental
+      allowNull: false,
+      unique: true,
     },
     consulta: {
       type: DataTypes.TEXT,
@@ -75,4 +84,5 @@ Consulta.init(
   },
   { sequelize, modelName: "Consulta", tableName: "consultas" }
 );
+
 export default Consulta;

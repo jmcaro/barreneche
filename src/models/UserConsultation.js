@@ -32,17 +32,6 @@ UserConsultation.init(
   }
 );
 
-// Relación muchos a muchos entre Usuario y Consulta a través de UserConsultation
-Usuario.belongsToMany(Consulta, {
-  through: UserConsultation,
-  foreignKey: "UsuarioId",
-});
-
-Consulta.belongsToMany(Usuario, {
-  through: UserConsultation,
-  foreignKey: "ConsultaId",
-});
-
 /* await Usuario.sync();
 await Consulta.sync();
 await UsuariosConsulta.sync();

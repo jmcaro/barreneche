@@ -1,0 +1,86 @@
+{{>sidebar}}
+<div class="my-10 font-sans m-auto md:w-3/4 sm:w-2/4">
+    <div class="flex items-center">
+        <h1 class="text-2xl font-semibold ml-4 ">Detalles de Consultas</h1>
+        <a href="/consultas" class="btn btn-sm btn-primary ml-4">Volver <svg xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+            </svg>
+
+
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+        </a>
+        <button onclick="assign_modal.showModal()" class="btn btn-sm btn-secondary ml-4">Asignar <svg
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path fill-rule="evenodd"
+                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
+                    clip-rule="evenodd" />
+            </svg>
+
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+        </button>
+    </div>
+    <div class="divider"></div>
+
+
+    <!-- Información de la consulta -->
+    <div class="consulta-info my-5 p-5 bg-gray-100 rounded-lg shadow-md">
+        <h2 class="text-xl font-bold">Consulta:</h2>
+        <p><strong>Asunto:</strong> {{consulta.consulta}}</p>
+        <p><strong>Estado:</strong> {{consulta.estado}}</p>
+        <p><strong>Fecha de Creación:</strong> {{consulta.createdAt}}</p>
+    </div>
+
+    <!-- Información de la Categoría (si está relacionada) -->
+    {{#if consulta.categoria}}
+    <div class="categoria-info my-5 p-5 bg-gray-100 rounded-lg shadow-md">
+        <h2 class="text-xl font-bold">Categoría</h2>
+        <p><strong>Categoría:</strong> {{consulta.categoria.categoria}}</p>
+        <p><strong>Descripción:</strong> {{consulta.categoria.descripcion}}</p>
+    </div>
+    {{/if}}
+
+    <!-- Información de Usuarios Asignados -->
+    <div class="usuarios-info my-5 p-5 bg-gray-100 rounded-lg shadow-md">
+        <h2 class="text-xl font-bold">Usuarios Asignados</h2>
+
+        {{#if consulta.Usuarios}}
+        <ul>
+            {{#each consulta.Usuarios}}
+            <li class="my-3 p-3 bg-white rounded-md shadow">
+                <p><strong>Nombre:</strong> {{primerNombre}} {{primerApellido}}</p>
+                <p><strong>Correo:</strong> {{correo}}</p>
+                <p><strong>Teléfono:</strong> {{telefono}}</p>
+                <p><strong>Rol:</strong> {{roles.rol}}</p>
+            </li>
+            {{/each}}
+        </ul>
+        {{else}}
+        <p>No hay usuarios asignados a esta consulta.</p>
+        {{/if}}
+    </div>
+
+    <!-- Respuestas a la consulta, si existen -->
+    <div class="respuestas-info my-5 p-5 bg-gray-100 rounded-lg shadow-md">
+        <h2 class="text-xl font-bold">Respuestas</h2>
+        {{#if consulta.Responses}}
+        <ul>
+            {{#each consulta.Responses}}
+            <li class="my-3 p-3 bg-white rounded-md shadow">
+                <p><strong>Respuesta:</strong> {{this.contenido}}</p>
+                <p><strong>Fecha de Respuesta:</strong> {{this.fechaRespuesta}}</p>
+            </li>
+            {{/each}}
+        </ul>
+        {{else}}
+        <p>No hay respuestas para esta consulta.</p>
+        {{/if}}
+    </div>
+
+    <!-- Botón para regresar -->
+    <div class="mt-5">
+        <a href="/consultas" class="bg-blue-500 text-white px-4 py-2 rounded">Volver a Consultas</a>
+    </div>
+</div>

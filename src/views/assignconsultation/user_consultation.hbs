@@ -24,7 +24,7 @@
                     <th>Fecha de consulta</th>
                     <th>Categoria</th>
                     <th>Nombres</th>
-                    <th>Consultas</th>
+                    <th>Razón social</th>
                     <th>Estado</th>
                     <th>Consulta</th>
                     <th>Correo</th>
@@ -37,10 +37,10 @@
                 {{#each user_consultation}}
                 <tr class="hover">
                     <th>{{@index}}</th>
-                    <td>{{Usuario.primerNombre}}</td>
+                    <td>{{UsuarioId.correo}}</td>
                     <td></td>
                     <td class="capitalize"></td>
-                    <td>{{this.consulta}}</td>
+                    <td></td>
                     <td>
                         <div class="badge badge-accent badge-lg text-xs text-slate-100 leading-3 text-center">{{estado}}
                         </div>

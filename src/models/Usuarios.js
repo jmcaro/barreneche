@@ -1,5 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/mysql.js";
+import Consulta from "../models/Consultas.js";
 
 class Usuario extends Model {}
 
@@ -59,4 +60,5 @@ Usuario.init(
   },
   { sequelize, modelName: "Usuario", tableName: "usuarios" }
 );
+
 export default Usuario;

@@ -1,0 +1,38 @@
+<dialog id="assign_modal" class="modal">
+    <div class="modal-box">
+        <h2 class="card-title text-center justify-center">Crear Categoría</h2>
+        <div class="modal-action">
+            <form class="w-full max-w-sm mx-auto bg-white p-8 rounded-md" method="post" action="/consultas/assign">
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">consulta</label>
+                    <select name="ConsultaId" id="consultaId" class="border rounded w-full p-2" required>
+                        <option value="" selected disabled>Elegir Consulta</option>
+                        {{#each consultas}}
+                        <option value="{{this.id}}">{{this.consulta}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Profesor</label>
+                    <select name="profesorId" id="profesorId" class="border rounded w-full p-2" required>
+                        <option value="" selected disabled>Asignar Profesor</option>
+                        {{#each profesores}}
+                        <option value="{{this.id}}">{{this.primerNombre}} {{this.primerApellido}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Estudiante</label>
+                    <select name="estudianteId" id="estudianteId" class="border rounded w-full p-2" required>
+                        <option value="" selected disabled>Asignar Estudiante</option>
+                        {{#each estudiantes}}
+                        <option value="{{this.id}}">{{this.primerNombre}} {{this.primerApellido}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <button class="btn btn-primary w-full hover:bg-indigo-600 transition duration-300"
+                    type="submit">Crear</button>
+            </form>
+        </div>
+    </div>
+</dialog>

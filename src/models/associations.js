@@ -3,6 +3,7 @@ import Categoria from "./Categorias.js";
 import Consulta from "./Consultas.js";
 import Usuario from "./Usuarios.js";
 import UserConsultation from "./UserConsultation.js";
+import Response from "./Response.js";
 // Relación muchos a muchos entre Usuario y Consulta a través de UserConsultation
 Usuario.belongsToMany(Consulta, {
   through: UserConsultation,
@@ -18,3 +19,12 @@ Usuario.belongsTo(Rol, {
 Consulta.belongsTo(Categoria, {
   as: "categoria",
 });
+
+Consulta.hasMany(Response, { foreignKey: "ConsultaId" });
+Response.belongsTo(Consulta, { foreignKey: "ConsultaId" });
+
+UserConsultation.belongsTo(Usuario, { foreignKey: "UsuarioId" });
+UserConsultation.belongsTo(Consulta, { foreignKey: "ConsultaId" });
+
+//await Response.sync();
+//await Consulta.sync({ alter: true });
