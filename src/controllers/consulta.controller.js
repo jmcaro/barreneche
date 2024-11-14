@@ -14,6 +14,7 @@ export const getConsultas = async (req, res) => {
           nested: true,
         },
       ],
+      order: [["ticketNumber", "ASC"]], // Ordena por ticketNumber de manera ascendente
     });
     const profesores = await Usuario.findAll({
       include: {
@@ -114,9 +115,11 @@ export const createConsulta = async (req, res) => {
       sexo,
       categoriaId,
     });
-    res.status(200).json({
+    /* res.status(200).json({
       message: createConsulta.consulta + " fue creado con éxito",
-    });
+    }); */
+    //Esto redirige a Consultas
+    res.redirect("/consultas");
   } catch (error) {
     res.status(500).json({ error });
   }

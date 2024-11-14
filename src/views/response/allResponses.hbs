@@ -1,0 +1,60 @@
+{{> sidebar}}
+
+<div class="container mx-auto my-10">
+    <h1 class="text-3xl font-bold mb-6">Todas las Respuestas</h1>
+
+    {{#if responses.length}}
+    <table class="table-auto w-full border-collapse">
+        <thead>
+            <tr class="bg-gray-100 border-b">
+                <th class="p-4 text-left">Número de Ticket</th>
+                <th class="p-4 text-left">Contenido de la Respuesta</th>
+                <th class="p-4 text-left">Fecha de Respuesta</th>
+                <th class="p-4 text-left">Observaciones</th>
+                <th class="p-4 text-left">Usuarios Asignados</th>
+                <th class="p-4 text-left">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each responses}}
+            <tr class="border-b hover:bg-gray-50">
+                <!-- Número de Ticket de la Consulta -->
+                <td class="p-4">{{Consultum.ticketNumber}}</td>
+
+                <!-- Contenido de la Respuesta -->
+                <td class="p-4">{{contenido}}</td>
+
+                <!-- Fecha de Respuesta -->
+                <td class="p-4">{{fechaRespuesta}}</td>
+
+                <!-- Observaciones -->
+                <td class="p-4">{{observaciones}}</td>
+
+                <!-- Usuarios Asignados -->
+                <td class="p-4">
+                    {{#if Consultum.Usuarios.length}}
+                    <ul>
+                        {{#each Consultum.Usuarios}}
+                        <li>{{primerNombre}} {{primerApellido}} ({{correo}})</li>
+                        {{/each}}
+                    </ul>
+                    {{else}}
+                    <span class="text-gray-500">No hay usuarios asignados</span>
+                    {{/if}}
+                </td>
+
+                <!-- Acciones para Editar y Eliminar -->
+                <td class="p-4">
+                    <a href="/responses/edit/{{id}}" class="text-blue-500 hover:underline">Editar</a> |
+                    <form action="/responses/{{id}}?_method=DELETE" method="POST" class="inline">
+                        <button type="submit" class="text-red-500 hover:underline">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <p class="text-gray-500">No hay respuestas disponibles.</p>
+    {{/if}}
+</div>

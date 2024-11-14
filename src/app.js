@@ -74,4 +74,7 @@ app.use(usuarios);
 import home from "./routes/home.routes.js";
 app.use(home);
 
+import responses from "./routes/responses.routes.js";
+app.use(responses);
+
 export default app;
