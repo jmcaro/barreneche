@@ -75,6 +75,12 @@ export const createResponse = async (req, res) => {
   }
 };
 
+// formulario para respuestas
+export const createFormResponse = async () => {
+  try {
+  } catch (error) {}
+};
+
 // Asignar una respuesta a una consulta existente
 export const assignResponse = async (req, res) => {
   try {

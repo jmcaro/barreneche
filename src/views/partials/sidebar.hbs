@@ -1,6 +1,4 @@
-<aside class="h-screen sticky top-0">
-
-
+<aside id="sidebar" class="h-screen sticky top-0">
   <div class="bg-blue-ua w-64 sm:block hidden text-slate-100 h-screen">
     <div class="pt-12 mx-3">
       <span class="font-bold text-xl ml-4 tracking-wide">Acciones Rápidas</span>
@@ -95,3 +93,20 @@
     <div></div>
   </div>
 </aside>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+    const toggleButton = document.getElementById('toggleSidebar');
+    const toggleButtonMobile = document.getElementById('toggleSidebarMobile');
+
+    // Evento para ocultar/mostrar el sidebar
+    const toggleSidebar = () => {
+      sidebar.classList.toggle('hidden');
+      mainContent.classList.toggle('full-width');
+    };
+
+    toggleButton.addEventListener('click', toggleSidebar);
+    toggleButtonMobile.addEventListener('click', toggleSidebar);
+  });
+</script>

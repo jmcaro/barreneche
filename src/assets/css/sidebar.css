@@ -1,0 +1,5 @@
+/* Botón para mostrar/ocultar el sidebar */
+.toggle-button {
+  z-index: 1001;
+  position: fixed;
+}
