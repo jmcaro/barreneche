@@ -9,6 +9,7 @@ import methodOverride from "method-override";
 import * as helpers from "./assets/js/utilsHBS.js";
 import cookieParser from "cookie-parser";
 import "../src/models/associations.js";
+import errorHandler from './middlewares/errorHandler.js';
 const app = express();
 app.use(cookieParser());
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -56,6 +57,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
 //Routes
+
+
 import roles from "./routes/roles.routes.js";
 app.use(roles);
 
@@ -77,4 +80,7 @@ app.use(home);
 import responses from "./routes/responses.routes.js";
 app.use(responses);
 
+import errorRoutes from './routes/error.routes.js';
+app.use('/', errorRoutes);
+errorHandler(app);
 export default app;
