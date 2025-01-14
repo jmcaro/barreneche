@@ -3,6 +3,7 @@ import Consulta from "../models/Consultas.js";
 import Categoria from "../models/Categorias.js";
 import Usuario from "../models/Usuarios.js";
 import UserConsultation from "../models/UserConsultation.js";
+import { getColorForState } from "../utils/getColorForState.js";
 
 export const getConsultas = async (req, res) => {
   try {
@@ -16,6 +17,10 @@ export const getConsultas = async (req, res) => {
       ],
       order: [["ticketNumber", "ASC"]], // Ordena por ticketNumber de manera ascendente
     });
+    const consultasConColor = consultas.map(consulta => ({
+      ...consulta.dataValues,
+      color: getColorForState(consulta.estado)
+    }));
     const profesores = await Usuario.findAll({
       include: {
         association: "roles",
@@ -30,7 +35,7 @@ export const getConsultas = async (req, res) => {
         where: { rol: "Estudiante" },
       },
     });
-    res.render("consultas/consultas", { consultas, profesores, estudiantes });
+    res.render("consultas/consultas", { consultas: consultasConColor, profesores, estudiantes });
     //console.log(consultas);
     //res.status(200).json({ consultas });
   } catch (error) {
