@@ -2,8 +2,8 @@
 {{>roles/deleteConfirmationModal}}
 <div class="m-1 p-3 w-full h-auto border rounded-md bg-slate-100">
     <div class="flex items-center">
-        <h1 class="text-2xl font-semibold ml-4 ">Usuarios</h1>
-        <a href="/register" class="btn btn-sm btn-primary ml-4">Crear <svg xmlns="http://www.w3.org/2000/svg"
+        <h1 class="text-2xl font-semibold ml-4 ">Consultas</h1>
+        <a href="/consultas/create" class="btn btn-sm btn-primary ml-4">Crear <svg xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                 <path fill-rule="evenodd"
                     d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
@@ -16,32 +16,37 @@
     </div>
     <div class="divider"></div>
     <div class="overflow-x-auto">
-        <table class="table table-zebra bg-white">
+        <table class="table table-zebra table-xs bg-white">
             <!-- head -->
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Foto</th>
+                    <th>Fecha de consulta</th>
+                    <th>Categoria</th>
                     <th>Nombres</th>
-                    <th>Rol</th>
+                    <th>Consultas</th>
+                    <th>Estado</th>
+                    <th>Consulta</th>
+                    <th>Correo</th>
                     <th>Acciones</th>
+
                 </tr>
             </thead>
             <tbody>
                 <!-- row 1 -->
-                {{#each usuarios}}
+                {{#each user_consultation}}
                 <tr class="hover">
                     <th>{{@index}}</th>
+                    <td>{{Usuario.primerNombre}}</td>
+                    <td></td>
+                    <td class="capitalize"></td>
+                    <td>{{this.consulta}}</td>
                     <td>
-                        <div class="avatar">
-                            <div class="w-12 rounded-full">
-                                {{!-- <img src="https://source.unsplash.com/random/100?sig={{primerNombre}}" /> --}}
-                                <img src="https://picsum.photos/seed/{{primerNombre}}/100"/>
-                            </div>
+                        <div class="badge badge-accent badge-lg text-xs text-slate-100 leading-3 text-center">{{estado}}
                         </div>
                     </td>
-                    <td class="capitalize">{{primerNombre}} {{primerApellido}}</td>
-                    <td>{{roles.rol}}</td>
+                    <td></td>
+                    <td></td>
                     <td>
                         <div class="inline-flex items-center rounded-md shadow-sm">
                             <a href="/usuarios/{{id}}"
