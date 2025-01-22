@@ -25,7 +25,8 @@ export const verifyToken = async (req, res, next) => {
         }
       }
     } catch (error) {
-      return res.status(404).json({ message: "error de validacion" });
+      //return res.status(404).json({ message: "error de validacion" });
+      return res.status(404).redirect('/login?error=Error de validación');
     }
   }
 };

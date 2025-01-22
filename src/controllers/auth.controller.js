@@ -74,7 +74,8 @@ export const signIn = async (req, res) => {
   }
 };
 export const login = (req, res) => {
-  return res.render("user/login", {});
+  const error = req.query.error;
+  return res.render("user/login", {error});
 };
 export const register = async (req, res) => {
   const roles = await Rol.findAll();

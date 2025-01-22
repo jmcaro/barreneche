@@ -80,7 +80,9 @@ app.use(home);
 import responses from "./routes/responses.routes.js";
 app.use(responses);
 
+//Error routes
 import errorRoutes from './routes/error.routes.js';
 app.use('/', errorRoutes);
 errorHandler(app);
+
 export default app;
