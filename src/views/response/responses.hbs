@@ -1,5 +1,4 @@
 {{>sidebar}}
-{{>roles/deleteConfirmationModal}}
 <div class="m-1 p-3 w-full h-auto border rounded-md bg-slate-100">
     <div class="flex items-center">
         <h1 class="text-2xl font-semibold ml-4 ">Respuestas</h1>
@@ -13,19 +12,8 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
         </a>
-        <button onclick="assign_modal.showModal()" class="btn btn-sm btn-secondary ml-4">Asignar <svg
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                <path fill-rule="evenodd"
-                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
-                    clip-rule="evenodd" />
-            </svg>
-
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-        </button>
     </div>
     <div class="divider"></div>
-    {{>consultation/assignUserForm}}
     <div class="overflow-x-auto">
         <table class="table table-zebra table-xs bg-white">
             <!-- head -->
@@ -44,7 +32,7 @@
                 {{#each responses}}
                 <tr class="hover">
                     <!-- Número de Ticket de la Consulta -->
-                    <td class="p-4">{{Consultum.ticketNumber}}</td>
+                    <td class="p-4">{{formatTicketNumber Consultum.ticketNumber}}</td>
 
                     <!-- Contenido de la Respuesta -->
                     <td class="p-4">{{contenido}}</td>

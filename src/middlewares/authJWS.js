@@ -4,10 +4,10 @@ import Usuario from "../models/Usuarios.js";
 export const verifyToken = async (req, res, next) => {
   const token = req.cookies.token;
   if (!token) {
-    console.log(token);
+    //console.log(token);
     return res
       .status(403)
-      .json({ message: "No te encuentras loggeado correctamente" });
+      .redirect("/login?error=Vuele a iniciar sesión por favor");
   } else {
     try {
       const verify = jwt.verify(token, process.env.JWTOKEN);
@@ -15,18 +15,22 @@ export const verifyToken = async (req, res, next) => {
       if (!verify) {
         return res
           .status(403)
-          .json({ message: "No te encuentras loggeado correctamente" });
+          .redirect("/login?error=No te encuentras loggeado correctamente");
       } else {
         const user = await Usuario.findByPk(verify.id);
         if (!user) {
-          return res.status(404).json({ message: "usuario no encontrado" });
+          return res
+            .status(403)
+            .redirect(
+              "/login?error=Usuario no encontrado o contraseña incorrecta"
+            );
         } else {
           next();
         }
       }
     } catch (error) {
       //return res.status(404).json({ message: "error de validacion" });
-      return res.status(404).redirect('/login?error=Error de validación');
+      return res.status(404).redirect("/login?error=Error de validación");
     }
   }
 };

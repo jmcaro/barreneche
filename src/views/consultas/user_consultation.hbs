@@ -4,7 +4,7 @@
 <div class="m-2 p-3 w-full h-auto border rounded-md bg-slate-100">
     <div class="flex items-center">
         <h1 class="text-2xl font-semibold ml-4 ">Revisión de consultas</h1>
-        <button onclick="my_modal_1.showModal()" class="btn btn-sm btn-primary ml-4">Crear <svg
+        {{!-- <button onclick="my_modal_1.showModal()" class="btn btn-sm btn-primary ml-4">Crear <svg
                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                 <path fill-rule="evenodd"
                     d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
@@ -13,14 +13,14 @@
 
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
-        </button>
+        </button> --}}
     </div>
     <div class="divider"></div>
 
 
 
     <div class="relative flex flex-col items-center gap-16 mx-auto my-10">
-        <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
             {{#each consultation}}
             <div class="flex flex-col items-center gap-3 px-8 py-10 bg-white rounded-3xl shadow-md">
                 <p id="{{id}}" class="text-2xl font-extrabold text-dark-grey-900 uppercase">Ticket #{{formatTicketNumber ticketNumber}}</p>
@@ -28,9 +28,7 @@
                 <p id="{{id}}" class="text-base leading-7 text-dark-grey-600 text-center capitalize">{{descripcion}}
                 </p>
                 <div class="flex space-x-2">
-                    <button onclick=updateFillFormCat('{{id}}') class="btn w-24 btn-primary">Editar</button>
-                    <button onclick=deleteConfirmation('{{id}}','/categorias/delete')
-                        class="btn w-24  btn-error">Borrar</button>
+                    <a href="/user_consultation/{{ticketNumber}}" class="btn w-24 btn-primary">Revisar</a>
                 </div>
             </div>
 
@@ -38,6 +36,3 @@
         </div>
     </div>
 </div>
-
-
-<script src="/js/utils.js"></script>

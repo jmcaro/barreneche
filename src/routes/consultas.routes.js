@@ -21,7 +21,9 @@ router
   .put(consultas.updateConsulta)
   .delete(consultas.deleteConsulta);
 
+// Ruta para la revisión de las consultas asignadas a un usuario
 router.route("/user_consultation").get(user_consultation.getUserConsultation);
+router.route("/user_consultation/:id").get(user_consultation.reviewConsultation);
 
 // Ruta para mostrar el formulario de edición
 router.get("/consultas/edit/:id", consultas.readFormConsulta); // Reutilizamos `readConsulta` para mostrar la vista con los datos actuales

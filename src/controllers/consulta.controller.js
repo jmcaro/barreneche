@@ -147,6 +147,8 @@ export const readConsulta = async (req, res) => {
   }
 };
 
+
+
 export const readFormConsulta = async (req, res) => {
   try {
     const id = req.params.id;

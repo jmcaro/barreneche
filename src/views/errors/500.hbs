@@ -1,5 +1,14 @@
-<div class="error-page">
-  <h1>500 - Error Interno del Servidor</h1>
-  <p>{{message}}</p>
-  <a href="/">Volver al inicio</a>
-</div>
+
+
+<section class="bg-white min-h-screen flex items-center justify-center w-full">
+  <div class="py-8 px-4 mx-auto w-full lg:py-16 lg:px-6 text-center">
+    <div class="mx-auto w-full text-center"></div>
+      <h1 class="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-primary-600">500</h1>
+      <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl">Error Interno del Servidor.</p>
+      <p class="mb-4 text-lg font-light text-gray-500">{{message}} </p>
+      <a href="/consultas" class="inline-flex items-center justify-center text-white bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-full text-sm px-6 py-3 text-center my-4 shadow-lg transform transition-transform hover:scale-105">
+        Volver
+      </a>  
+    </div>   
+  </div>
+</section>

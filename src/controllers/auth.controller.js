@@ -59,13 +59,13 @@ export const signIn = async (req, res) => {
     where: { numeroDocumento: user },
   });
   if (!userCheck) {
-    res.status(400).json({ message: "Datos incorrectos 1" });
+    res.status(400).redirect("/login?error=Usuario o contraseña incorrecta");
   } else {
     //res.status(200).json(userCheck);
     const passwordCheck = await desencriptar(password, userCheck.password);
     console.log(passwordCheck);
     if (!passwordCheck) {
-      res.status(400).json({ message: "Datos incorrectos 2" });
+      res.status(400).redirect("/login?error=Usuario o contraseña incorrecta");
     } else {
       const token = tokenizador(userCheck.id);
       res.cookie("token", token);
