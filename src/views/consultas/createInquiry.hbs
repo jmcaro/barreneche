@@ -1,7 +1,8 @@
 <!-- component -->
-{{>sidebar}}
+{{!-- {{>sidebar}} --}}
 <div class="my-5 font-sans m-auto md:w-3/4 sm:w-2/4">
   <div class="flex items-center">
+    {{#if usuario}}
     <a href="/consultas" class="btn btn-sm btn-primary ml-4"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
@@ -11,15 +12,19 @@
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
       </svg>
     </a>
-    <h1 class="text-2xl font-semibold ml-4 ">{{#if consulta}}Editar Ticket
-      <div class="badge badge-error gap-2 badge-lg">#{{consulta.ticketNumber}}</div>
-
-      {{else}}Crear Nueva
-      Consulta{{/if}}
-    </h1>
+      <h1 class="text-2xl font-semibold ml-4">
+        {{#if consulta}}
+          Editar Ticket
+          <div class="badge badge-error gap-2 badge-lg">#{{consulta.ticketNumber}}</div>
+        {{else}}
+          Crear Nueva Consulta
+        {{/if}}
+      </h1>
+    {{/if}}
   </div>
   <div class="divider"></div>
   <div class="relative min-h-screen flex flex-col sm:justify-center items-center">
+    <h1 class="text-4xl font-bold text-center mb-6 text-blue-ua">Realiza tu consulta</h1>
     <div class="relative sm:max-w-sm md:max-w-screen-md w-full">
       {{!-- <div class="card bg-blue-ua shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6"></div>
       <div class="card bg-orange-ua shadow-lg w-full h-full rounded-3xl absolute transform rotate-6"></div> --}}
