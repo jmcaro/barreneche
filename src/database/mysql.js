@@ -1,7 +1,7 @@
 /* const { Sequelize } = require('sequelize'); */
 import { Sequelize, DataTypes, Model } from 'sequelize';
 export const sequelize = new Sequelize('consultorio', 'root', '#Boyer88', {
-    host: 'localhost',
+    host: process.env.HOST || 'localhost',
     dialect: 'mysql',
     port:3306,
   });
