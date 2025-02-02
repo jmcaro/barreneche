@@ -10,7 +10,23 @@ const Response = sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
-    contenido: {
+    introduccion: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    analisis: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    respuesta: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    recomendaciones: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    cierre: {
       type: DataTypes.TEXT,
       allowNull: false,
     },

@@ -27,7 +27,14 @@ export const reviewConsultation = async (req, res) => {
       },
     });
     //res.status(302).json({ consulta });
-    res.render("consultas/consultation_review", { consulta });
+    const estructura = {
+      introduccion: "Introducción: Breve saludo e introducción al propósito de la respuesta. Identificación de la naturaleza de la consulta realizada por el usuario.",
+      analisis: "Análisis Jurídico/Técnico: Fundamentación normativa o técnica aplicable al tema consultado. Artículos relevantes, leyes o decretos aplicables. Explicación técnica detallada.",
+      respuesta: "Respuesta a la Consulta: Conclusión clara basada en el análisis previo. Respuesta específica a la inquietud planteada",
+      recomendaciones: "Recomendaciones Adicionales: Pasos a seguir, documentos necesarios, o recomendaciones prácticas",
+      cierre: "Cierre: Mensaje de disposición para aclaraciones adicionales",
+    };
+    res.render("consultas/consultation_review", { consulta, estructura });
   } catch (error) {
     res.status(500).json({ error });
   }

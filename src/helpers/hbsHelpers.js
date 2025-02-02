@@ -12,3 +12,4 @@ Handlebars.registerHelper('getColorForState', function (estado) {
 Handlebars.registerHelper("formatTicketNumber", function (ticketNumber) {
     return ticketNumber.toString().padStart(4, "0");
 });
+

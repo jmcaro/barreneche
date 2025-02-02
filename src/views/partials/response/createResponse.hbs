@@ -1,0 +1,83 @@
+<!-- component -->
+{{!-- {{>sidebar}} --}}
+<div class="my-5 font-sans m-auto md:w-3/4 sm:w-2/4">
+  <div class="flex items-center">
+    
+    <a href="/consultas" class="btn btn-sm btn-primary ml-4"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+      </svg>
+
+
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+      </svg>
+    </a>
+      <h1 class="text-xl font-semibold ml-4">
+        {{#if respuesta}}
+          Editar respuesta
+          <div class="badge badge-secondary gap-2 badge-lg">#{{formatTicketNumber consulta.ticketNumber}}</div>
+        {{else}}
+          Crear Nueva Respuesta
+          <div class="badge badge-primary gap-2 badge-lg">#{{formatTicketNumber consulta.ticketNumber}}</div>
+        {{/if}}
+      </h1>
+      <div class="mx-auto w-1/4">
+          <img src="/img/Isotipo.png" alt="Consultorio Contable UA" srcset="">
+        </div>
+   
+  </div>
+  <div class="divider"></div>
+  <div class="relative flex flex-col sm:justify-center items-center">
+    <div class="relative sm:max-w-sm md:max-w-screen-md w-full">
+      {{!-- <div class="card bg-blue-ua shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6"></div>
+      <div class="card bg-orange-ua shadow-lg w-full h-full rounded-3xl absolute transform rotate-6"></div> --}}
+      <div class="relative w-full rounded-3xl px-6 py-4 bg-gray-100 shadow-md">
+        <form method="POST"
+          action="{{#if consulta}}/consultas/edit/{{consulta.id}}?_method=PUT{{else}}/consultas{{/if}}" class="">
+          {{#if consulta}}<input type="hidden" name="_method" value="PUT" />{{/if}}
+          <div class="space-x-2 space-y-3 grid md:grid-cols-2 sm:grid-cols-1">
+          
+            <div class="mt-3 ml-2 col-span-2">
+              <textarea placeholder="{{estructura.introduccion}}" id="introduccion" name="introduccion" rows="4"
+                class="block w-full textarea textarea-bordered textarea-primary  border-slate-300 bg-gray-100 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"></textarea>
+            </div>
+
+            <div class="mt-3 ml-2 col-span-2">
+              <textarea placeholder="{{estructura.analisis}}" id="analisis" name="analisis" rows="4"
+                class="block w-full textarea textarea-bordered textarea-primary  border-slate-300 bg-gray-100 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"></textarea>
+            </div>
+            
+            <div class="mt-3 ml-2 col-span-2">
+              <textarea placeholder="{{estructura.respuesta}}" id="respuesta" name="respuesta" rows="4"
+                class="block w-full textarea textarea-bordered textarea-primary  border-slate-300 bg-gray-100 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"></textarea>
+            </div>
+
+            <div class="mt-3 ml-2 col-span-2">
+              <textarea placeholder="{{estructura.recomendaciones}}" id="recomendaciones" name="recomendaciones" rows="4"
+                class="block w-full textarea textarea-bordered textarea-primary  border-slate-300 bg-gray-100 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"></textarea>
+            </div>
+            
+            <div class="mt-3 ml-2 col-span-2">
+              <textarea placeholder="{{estructura.cierre}}" id="cierre" name="cierre" rows="4"
+                class="block w-full textarea textarea-bordered textarea-primary  border-slate-300 bg-gray-100 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"></textarea>
+            </div>
+
+            
+
+          </div>
+
+          <div class="mt-5 flex justify-center">
+            <button
+              class="{{#if respuesta}}bg-orange-ua{{else}}bg-blue-ua{{/if}} w-full md:max-w-lg py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105">
+              {{#if respuesta}}Actualizar{{else}}Registrar{{/if}}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  flatpickr("#calendar", {});
+</script>
