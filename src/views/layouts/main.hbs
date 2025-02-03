@@ -12,7 +12,9 @@
 
 <body class="bg-black">
 
+   {{#unless hiddenNavbar}}
     {{>navbar}}
+    {{/unless}}
     <main class="flex bg-slate-300">
         {{{body}}}
 

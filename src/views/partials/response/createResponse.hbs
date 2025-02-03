@@ -33,9 +33,10 @@
       <div class="card bg-orange-ua shadow-lg w-full h-full rounded-3xl absolute transform rotate-6"></div> --}}
       <div class="relative w-full rounded-3xl px-6 py-4 bg-gray-100 shadow-md">
         <form method="POST"
-          action="{{#if consulta}}/consultas/edit/{{consulta.id}}?_method=PUT{{else}}/consultas{{/if}}" class="">
-          {{#if consulta}}<input type="hidden" name="_method" value="PUT" />{{/if}}
+          action="{{#if respuesta}}/responses/edit/{{consulta.id}}?_method=PUT{{else}}/responses/create{{/if}}" class="">
+          {{#if respuesta}}<input type="hidden" name="_method" value="PUT" />{{/if}}
           <div class="space-x-2 space-y-3 grid md:grid-cols-2 sm:grid-cols-1">
+            <input type="hidden" name="ConsultaId" value="{{consulta.id}}">
           
             <div class="mt-3 ml-2 col-span-2">
               <textarea placeholder="{{estructura.introduccion}}" id="introduccion" name="introduccion" rows="4"
