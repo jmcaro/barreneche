@@ -4,7 +4,7 @@ import Categoria from "../models/Categorias.js";
 export const getCategorias = async (req, res) => {
   try {
     const categorias = await Categoria.findAll();
-    res.render("categories/categorias", { categorias });
+    res.render("categories/categorias", { categorias, hiddenNavbar: true });
     //res.status(200).json({ categorias });
   } catch (error) {
     res.status(500).json({ error });

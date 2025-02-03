@@ -32,29 +32,28 @@ export const getAllResponses = async (req, res) => {
 export const viewResponse = async (req, res) => {
   try {
     const responseId = req.params.id;
-    const response = await Response.findByPk(responseId, {
+    const respuesta = await Response.findByPk(responseId, {
       include: [
         {
           model: Consulta,
-          as: "consulta",
           include: [
             {
               model: Usuario,
-              as: "usuarios",
-              through: { model: UserConsultation, attributes: [] },
-              attributes: ["id", "nombre", "email"], // Atributos del usuario
+              /* through: { model: UserConsultation, attributes: [] },
+              attributes: ["id", "nombre", "email"], // Atributos del usuario */
             },
           ],
           attributes: ["ticketNumber"], // Solo incluye el número de ticket de la consulta
         },
       ],
     });
-
-    if (!response) {
+   // res.json(respuesta);
+    console.log(respuesta);
+    //res.render("response/viewResponse", { respuesta });
+    res.render("response/viewResponse", { respuesta, hiddenNavbar: true }); 
+    if (!respuesta) {
       return res.status(404).json({ message: "Respuesta no encontrada" });
     }
-
-    res.status(200).json(response);
   } catch (error) {
     console.error("Error al obtener la respuesta:", error);
     res.status(500).json({ error: "Error interno del servidor" });
@@ -64,11 +63,13 @@ export const viewResponse = async (req, res) => {
 // Crear una nueva respuesta
 export const createResponse = async (req, res) => {
   try {
-    const { contenido, consultaId } = req.body;
-    const newResponse = await Response.create({ contenido, consultaId });
-    res
-      .status(201)
-      .json({ message: "Respuesta creada con éxito", newResponse });
+    const respuesta = req.body;
+    const newResponse = await Response.create({ ...respuesta });
+    const consulta = await Consulta.findByPk(newResponse.ConsultaId);
+    if (!consulta) {
+      return res.status(404).json({ message: "Consulta no encontrada" });
+    }
+    res.redirect(`/user_consultation/${consulta.ticketNumber}`);
   } catch (error) {
     console.error("Error al crear la respuesta:", error);
     res.status(500).json({ error: "Error interno del servidor" });
@@ -106,13 +107,12 @@ export const assignResponse = async (req, res) => {
 export const editResponse = async (req, res) => {
   try {
     const responseId = req.params.id;
-    const { contenido } = req.body;
+    const contenido = req.body;
 
     const response = await Response.findByPk(responseId);
     if (!response) {
       return res.status(404).json({ message: "Respuesta no encontrada" });
     }
-
     response.contenido = contenido;
     await response.save();
 
