@@ -5,8 +5,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        "orange-ua": "#E16F23",
-        "blue-ua": "#1F3B75",
+        "orange-ua": "#D85819",
+        "blue-ua": "#143163",
       },
       animation: {
         'fade-in-out': 'fadeIn 1s ease-in-out forwards, fadeOut 1s ease-in-out 5s forwards', // Aparece en 1s, espera 5s, desaparece en 1s
