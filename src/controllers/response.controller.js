@@ -76,10 +76,39 @@ export const createResponse = async (req, res) => {
   }
 };
 
-// formulario para respuestas
-export const createFormResponse = async () => {
+export const addObservationResponse = async (req, res) => {
   try {
-  } catch (error) {}
+    const { responseId, observacion } = req.body;
+    const response = await Response.findByPk(responseId);
+    const consulta = await Consulta.findByPk(response.ConsultaId);
+    if (!response) {
+      return res.status(404).json({ message: "Respuesta no encontrada" });
+    }
+    response.observaciones = observacion;
+    await response.save();
+
+    //res.status(200).json({ message: "Observación agregada a la respuesta con éxito" });
+    res.redirect(`/user_consultation/${consulta.ticketNumber}`);
+  } catch (error) {
+    console.error("Error al agregar la observación:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+};
+
+// formulario para respuestas
+export const readFormResponse = async (req, res) => {
+  try {
+    const responseId = req.params.id;
+    const respuesta = await Response.findByPk(responseId);
+    const consulta = await Consulta.findByPk(respuesta.ConsultaId);
+    if (!respuesta) {
+      return res.status(404).json({ message: "Respuesta no encontrada" });
+    }
+    res.render("partials/response/createResponse", { respuesta, hiddenNavbar: true, consulta });
+  } catch (error) {
+    console.error("Error al obtener la consulta:", error);
+    res.status(500).json({ error });
+  }
 };
 
 // Asignar una respuesta a una consulta existente
@@ -107,18 +136,18 @@ export const assignResponse = async (req, res) => {
 export const editResponse = async (req, res) => {
   try {
     const responseId = req.params.id;
-    const contenido = req.body;
+    const {introduccion, analisis, respuesta, recomendaciones, ConsultaId} = req.body;
+    const consulta = await Consulta.findByPk(ConsultaId);
 
     const response = await Response.findByPk(responseId);
     if (!response) {
       return res.status(404).json({ message: "Respuesta no encontrada" });
     }
-    response.contenido = contenido;
-    await response.save();
-
-    res
+    await response.update({ introduccion, analisis, respuesta, recomendaciones }); 
+    res.redirect(`/user_consultation/${consulta.ticketNumber}`);
+    /* res
       .status(200)
-      .json({ message: "Respuesta actualizada con éxito", response });
+      .json({ message: "Respuesta actualizada con éxito", introduccion }); */
   } catch (error) {
     console.error("Error al editar la respuesta:", error);
     res.status(500).json({ error: "Error interno del servidor" });

@@ -34,7 +34,7 @@
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  background-color: #007bff;
+  background-color: #D85819;
   color: white;
   display: flex;
   align-items: center;
@@ -42,8 +42,21 @@
   border-radius: 50%;
   cursor: pointer;
   transition: right 0.3s ease;
+  animation: colorChange 6s infinite alternate;
 }
 
 #sidebar.visible #sidebarIndicator {
   right: 10px; /* Mueve el indicador dentro del sidebar cuando está visible */
+}
+
+@keyframes colorChange {
+  0% {
+    background-color: #143163;
+  }
+  50% {
+    background-color: #ffffff;
+  }
+  100% {
+    background-color: #D85819;
+  }
 }

@@ -31,7 +31,10 @@
     <p class="text-gray-600">{{respuesta.cierre}}</p>
   </div>
 
-  <div class="text-center mt-6">
-    <a href="/consultas" class="btn btn-primary">Volver a Consultas</a>
+  <div class="text-center mt-6 flex flex-row justify-center space-x-3">
+    <form method="dialog">
+      <button class="btn btn-primary">Volver</button>
+    </form>
+    <button onclick="openResponseModal('{{respuesta.id}}','responses')" class="btn btn-secondary">Editar</button>
   </div>
 </div>

@@ -32,3 +32,18 @@ function updateFillFormCat(id) {
   //form.setAttribute("value", rolName);
   cat.showModal();
 }
+function openResponseModal(responseId, path) {
+  fetch(`/${path}/${responseId}`)
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('viewResponseContent').innerHTML = html;
+      document.getElementById('viewResponse').showModal();
+    })
+    .catch(error => console.error('Error al cargar la respuesta:', error));
+}
+function showObservationModalId(responseId) {
+document.getElementById('responseIdObservation').value = responseId;
+observationResponse = document.getElementById(`or${responseId}`).textContent;
+document.getElementById('observacionCampo').value = observationResponse;
+document.getElementById('observacion').showModal();
+}
