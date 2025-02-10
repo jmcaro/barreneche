@@ -80,6 +80,9 @@ app.use(home);
 import responses from "./routes/responses.routes.js";
 app.use(responses);
 
+import cualifications from "./routes/cualifications.routes.js";
+app.use(cualifications);
+
 //Error routes
 import errorRoutes from './routes/error.routes.js';
 app.use('/', errorRoutes);

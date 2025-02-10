@@ -28,7 +28,7 @@ const Response = sequelize.define(
     },
     cierre: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     fechaRespuesta: {
       type: DataTypes.DATE,

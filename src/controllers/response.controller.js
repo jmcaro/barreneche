@@ -158,14 +158,15 @@ export const editResponse = async (req, res) => {
 export const deleteResponse = async (req, res) => {
   try {
     const responseId = req.params.id;
-
     const response = await Response.findByPk(responseId);
+    const consulta = await Consulta.findByPk(response.ConsultaId);
     if (!response) {
       return res.status(404).json({ message: "Respuesta no encontrada" });
     }
 
     await response.destroy();
-    res.status(200).json({ message: "Respuesta eliminada con éxito" });
+    //res.status(200).json({ message: "Respuesta eliminada con éxito" });
+    res.redirect(`/user_consultation/${consulta.ticketNumber}`);
   } catch (error) {
     console.error("Error al borrar la respuesta:", error);
     res.status(500).json({ error: "Error interno del servidor" });

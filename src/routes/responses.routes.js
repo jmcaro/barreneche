@@ -19,6 +19,6 @@ router.post("/responses/create", createResponse); // Crear una nueva respuesta
 router.put("/responses/assign", assignResponse); // Asignar una respuesta a una consulta
 router.put("/responses/add_observation", addObservationResponse); // Agregar una observación a una respuesta
 router.put("/responses/:id", editResponse); // Editar una respuesta
-router.delete("/responses/:id", deleteResponse); // Borrar una respuesta
+router.get("/responses/delete/:id", deleteResponse); // Borrar una respuesta
 
 export default router;

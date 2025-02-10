@@ -13,3 +13,14 @@ Handlebars.registerHelper("formatTicketNumber", function (ticketNumber) {
     return ticketNumber.toString().padStart(4, "0");
 });
 
+Handlebars.registerHelper('eq', function (v1, v2, options) {
+    if (v1 === v2) {
+        return options.fn(this);
+    }
+    return options.inverse(this);
+});
+
+Handlebars.registerHelper("index", function(array, index) {
+    return array && array.length > index ? array[index] : null;
+});
+

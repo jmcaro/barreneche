@@ -4,7 +4,9 @@
 <div class="my-10 font-sans m-auto md:w-3/4 sm:w-2/4">
     <div class="flex items-center">
         <h1 class="text-2xl font-semibold ml-4 ">Seguimiento Consultas</h1>
-        <a href="/user_consultation" class="btn btn-sm btn-primary ml-4">Volver <svg xmlns="http://www.w3.org/2000/svg"
+
+        {{!-- boton volver --}}
+        <a href="/user_consultation" class="btn btn-sm btn-secondary ml-4">Volver <svg xmlns="http://www.w3.org/2000/svg"
                 fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
             </svg>
@@ -13,7 +15,8 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
         </a>
-        <button onclick="my_modal_5.showModal()" class="btn btn-sm btn-success ml-4">Responder
+        {{!-- boton responder --}}
+        <button onclick="my_modal_5.showModal()" class="btn btn-sm btn-info ml-4">Responder
             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                 height="24" fill="currentColor" viewBox="0 0 24 24">
                 <path fill-rule="evenodd"
@@ -21,7 +24,9 @@
                     clip-rule="evenodd" />
             </svg>
         </button>
-        <button onclick="my_modal_4.showModal()"class="btn btn-sm btn-secondary ml-4">Ayuda <svg
+
+         {{!-- boton ayuda --}}
+        <button onclick="my_modal_4.showModal()" class="btn btn-sm btn-warning ml-4">Ayuda <svg
                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                 <path fill-rule="evenodd"
                     d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
@@ -63,7 +68,7 @@
         </div>
     </div>
     </dialog>
-
+    {{>helps/deleteConfirmationModal}}
     {{!-- mODAL CREAR observacion --}}
     <dialog id="observacion" class="modal">
         <div class="modal-box w-11/12 max-w-5xl">
@@ -158,8 +163,8 @@
                             <div class="basis-2/3" id="or{{this.id}}" class="w-full">{{this.observaciones}}</div>
                         </div>
                     </div>
-                    <div class="dropdown dropdown-hover">
-                        <div tabindex="0" role="button" class="btn btn-sm btn-info m-1">
+                    <div class="dropdown dropdown-hover dropdown-left dropdown-end">
+                        <div tabindex="0" role="button" class="btn btn-sm btn-info hover:btn-ghost m-1">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                                 <path fill-rule="evenodd"
                                     d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
@@ -208,8 +213,8 @@
                                 </button>
                             </li>
                             <li>
-                                <button onclick=deleteConfirmation('{{id}}','/usuarios/delete')
-                                    class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
+                                <button onclick=deleteConfirmation('{{id}}','/responses/delete')
+                                    class="text-slate-800 hover:text-error-ua text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                             stroke="currentColor" class="w-4 h-4">

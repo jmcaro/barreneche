@@ -1,0 +1,23 @@
+{{#if Cualificacion}}
+<h1 class="text-2xl font-bold mb-4">Editar Calificación</h1>
+{{else}}
+<h1 class="text-2xl font-bold mb-4">Calificar Consulta</h1>
+{{/if}}
+<form action="/cualifications/create" method="POST" class="space-y-4">
+    <input type="hidden" name="ConsultaId" id="ConsultaId">
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Estudiante:</label>
+        <input id="nombreEstudiante" type="text" name="nombre" required class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" readonly>
+    </div>
+  <div>
+    <label class="block text-sm font-medium text-gray-700">Calificación (1-5):</label>
+    <input type="number" name="calificacion" min="1" max="5" step="0.1" pattern="[0-9]+(\.[0-9]{1,2})?" required 
+        class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        oninput="this.value = parseFloat(this.value).toFixed(1)">
+</div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Comentario:</label>
+        <textarea name="comentario" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+    </div>
+    <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Guardar</button>
+</form>

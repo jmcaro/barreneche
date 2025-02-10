@@ -1,0 +1,121 @@
+{{>sidebar}}
+
+<div class="mx-auto p-3 h-screen border rounded-md bg-slate-100 w-4/5">
+    <div class="flex items-center">
+        <h1 class="text-2xl font-semibold ml-4 ">Calificaciones</h1>
+        <a href="/consultas/create" class="btn btn-sm btn-primary ml-4">Crear <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path fill-rule="evenodd"
+                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
+                    clip-rule="evenodd" />
+            </svg>
+
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+        </a>
+        <button onclick="assign_modal.showModal()" class="btn btn-sm btn-secondary ml-4">Asignar <svg
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path fill-rule="evenodd"
+                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
+                    clip-rule="evenodd" />
+            </svg>
+
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+        </button>
+    </div>
+    <div class="divider"></div>
+    <div class="overflow-x-auto">
+        <table class="table table-zebra table-xs bg-white">
+            <!-- head -->
+            <thead>
+                <tr>
+                    <th>#Ticket</th>
+                    <th>Fecha de consulta</th> 
+                    {{!-- <th>Lider</th> --}}
+                    <th>Estudiante</th>
+                    <th>Calificacion</th> 
+                    <th>Acciones</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- row 1 -->
+                {{#each consultas}}
+                <tr class="hover">
+                    <th>{{formatTicketNumber ticketNumber}}</th>
+                    <td>{{formatDate createdAt "DD/MM/YYYY"}}</td>
+                    
+                    
+                    <!-- Columna Líder -->
+{{!--                     <td>
+                        {{#if (hasAnyRole this.Usuarios "Profesor" "Administrador")}}
+                        {{#each this.Usuarios}}
+                        {{#if (or (eq this.roles.rol "Profesor") (eq this.roles.rol "Administrador"))}}
+                        {{this.primerNombre}} {{this.primerApellido}} <br>
+                        {{/if}}
+                        {{/each}}
+                        {{else}}
+                        Sin Asignar
+                        {{/if}}
+                    </td> --}}
+
+                    <!-- Columna Estudiante -->
+                    <td id="{{this.id}}" class="uppercase">
+                        {{#if (hasRole this.Usuarios "Estudiante")}}
+                        {{#each this.Usuarios}}
+                        {{#if (eq this.roles.rol "Estudiante")}}
+                        {{this.primerNombre}} {{this.primerApellido}} <br>
+                        {{/if}}
+                        {{/each}}
+                        {{else}}
+                        Sin Asignar
+                        {{/if}}
+                    </td>
+                    <td id="calificacion" class="text-xl font-bold text-slate-800">
+                        {{Cualificacion.calificacion}}
+                    </td>
+                    
+
+                    <td class="p-4">
+                        
+                        
+                       {{#if Cualificacion.calificacion}}
+
+                        <button id="btn-calificar" onclick="openResponseModal('{{Cualificacion.id}}','cualifications/edit')" class="btn btn-xs btn-accent">Recalificar</button>
+                       {{else}}
+                        <button id="btn-calificar" onclick="showCreateCualificationModal('{{this.id}}')" class="btn btn-xs btn-info">Calificar</button>
+                       {{/if}}
+                        
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{!-- mODAL CREAR calificacion --}}
+<dialog id="createCualification" class="modal">
+    <div class="modal-box w-1/3 max-w-5xl">
+        {{>cualification/createCualification}}
+        <div class="modal-action">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+        </div>
+    </div>
+</dialog>
+
+<dialog id="viewResponse" class="modal">
+  <div class="modal-box w-1/3 max-w-2/3">
+    <div id="viewResponseContent"></div>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+      </form>
+      <form method="dialog">
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>

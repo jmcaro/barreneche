@@ -1,8 +1,8 @@
 function deleteConfirmation(id, path) {
-  let rol = document.getElementById("deleteModal");
-  rol.showModal();
+  const modal = document.getElementById("deleteModal");
   let form = document.getElementById("formDeleteRol");
   form.setAttribute("action", `${path}/${id}`);
+  modal.showModal();
 }
 
 function updateFillForm(id) {
@@ -47,3 +47,19 @@ observationResponse = document.getElementById(`or${responseId}`).textContent;
 document.getElementById('observacionCampo').value = observationResponse;
 document.getElementById('observacion').showModal();
 }
+
+function showCreateCualificationModal(consultaId) {
+  nombres = document.getElementById(consultaId).textContent;
+  document.getElementById('nombreEstudiante').value = nombres;
+  document.getElementById('ConsultaId').value = consultaId;
+  document.getElementById('createCualification').showModal();
+  }
+
+  function showEditCualificationModal(consultaId,path) {
+    nombres = document.getElementById(consultaId).textContent;
+    document.getElementById('nombreEstudiante').value = nombres;
+    document.getElementById('ConsultaId').value = consultaId;
+    form.setAttribute("action", `/cualifications/edit/${id}?_method=PUT`);
+    document.getElementById('createCualification').showModal();
+    }
+  
