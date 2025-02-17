@@ -84,3 +84,8 @@ export const register = async (req, res) => {
 export const dashboard = (req, res) => {
   return res.render("user/dashboard", {});
 };
+
+export const logout = (req, res) => {
+  res.clearCookie("token");
+  res.redirect("/login");
+};

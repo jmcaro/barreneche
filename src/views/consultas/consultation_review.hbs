@@ -15,6 +15,8 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
         </a>
+
+        {{#if (or (eq user.rol 'Administrador') (eq user.rol 'Estudiante'))}}
         {{!-- boton responder --}}
         <button onclick="my_modal_5.showModal()" class="btn btn-sm btn-info ml-4">Responder
             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -24,6 +26,7 @@
                     clip-rule="evenodd" />
             </svg>
         </button>
+        {{/if}}
 
          {{!-- boton ayuda --}}
         <button onclick="my_modal_4.showModal()" class="btn btn-sm btn-warning ml-4">Ayuda <svg

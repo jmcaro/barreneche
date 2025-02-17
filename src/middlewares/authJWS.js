@@ -1,23 +1,27 @@
 import jwt from "jsonwebtoken";
 import Usuario from "../models/Usuarios.js";
 
+
+
+
 export const verifyToken = async (req, res, next) => {
   const token = req.cookies.token;
   if (!token) {
     //console.log(token);
-    return res
-      .status(403)
-      .redirect("/login?error=Vuele a iniciar sesión por favor");
+    return res.status(403).redirect("/login?error=Vuele a iniciar sesión por favor");
   } else {
     try {
       const verify = jwt.verify(token, process.env.JWTOKEN);
       req.userID = verify.id;
+      //console.log(req.userID);
       if (!verify) {
         return res
           .status(403)
           .redirect("/login?error=No te encuentras loggeado correctamente");
       } else {
-        const user = await Usuario.findByPk(verify.id);
+        const user = await Usuario.findByPk(req.userID, {
+          include: { all: true, nested: true },
+        });
         if (!user) {
           return res
             .status(403)
@@ -25,6 +29,11 @@ export const verifyToken = async (req, res, next) => {
               "/login?error=Usuario no encontrado o contraseña incorrecta"
             );
         } else {
+          req.user = user;
+          res.locals.user = user;
+          //console.log(req.user);
+          
+          //res.locals.user = user;
           next();
         }
       }
@@ -35,10 +44,10 @@ export const verifyToken = async (req, res, next) => {
   }
 };
 export const isAdmin = async (req, res, next) => {
-  const user = await Usuario.findByPk(req.userID, {
+  //console.log(req.userID);
+    const user = await Usuario.findByPk(req.userID, {
     include: { all: true, nested: true },
   });
-  //console.log(user.roles.rol);
   try {
     if (user.roles.rol === "Administrador") {
       return next();

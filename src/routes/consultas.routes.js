@@ -12,8 +12,8 @@ router.route("/consultas/assign").post(consultas.assignUserConsultation);
 
 router
   .route("/consultas")
-  .get([auth.verifyToken || auth.isAdmin], consultas.getConsultas)
-  .post([auth.verifyToken || auth.isProfe], consultas.createConsulta);
+  .get([auth.verifyToken , auth.isAdmin], consultas.getConsultas)
+  .post(consultas.createConsulta);
 
 router
   .route("/consultas/:id")

@@ -32,9 +32,16 @@
 
         {{!-- <input id="toggleSidebar" type="checkbox" class="toggle toggle-primary toggle-button" checked="checked" /> --}}
         <div class="flex flex-1 items-center md:justify-between sm:items-stretch sm:justify-start">
-          <div class="flex flex-shrink-0 items-center bg-slate-300 border rounded-md px-2 ml-14">
+            <div class="flex flex-shrink-0 items-center bg-slate-300 border rounded-md px-2 ml-14">
             <img class="h-12 w-auto" src="/img/Isotipo.png" alt="Consultorio Contable UA" />
-          </div>
+            </div>
+            {{#if user}}
+            <div class="flex flex-col items-center pt-2 text-blue-ua bg-blue-200 rounded-md px-3 py-2 text-sm font-medium capitalize">
+            <span>Bienvenido {{user.primerNombre}} {{user.primerApellido}}</span>
+            <span class="font-bold">{{user.roles.rol}}</span>
+            </div>
+          {{/if}}
+          
           <div class="hidden sm:ml-6 sm:block items-center pt-2">
             <div class="flex space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
@@ -42,8 +49,17 @@
                 aria-current="page">Home</a>
               <a href="https://consultorioua.com/"
                 class="text-gray-300 hover:bg-blue-200 hover:text-blue-ua hover:font-bold rounded-md px-3 py-2 text-sm font-medium">Equipo</a>
+
+              
+          
+             
+              {{#if user}}
+              <a href="/logout"
+                class="text-gray-300 hover:bg-blue-200 hover:text-blue-ua hover:font-bold rounded-md px-3 py-2 text-sm font-medium">Salir</a>
+              {{else}}
               <a href="/login"
                 class="text-gray-300 hover:bg-blue-200 hover:text-blue-ua hover:font-bold rounded-md px-3 py-2 text-sm font-medium">Login</a>
+              {{/if}}
 
             </div>
           </div>

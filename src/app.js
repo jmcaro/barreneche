@@ -15,6 +15,7 @@ const app = express();
 app.use(cookieParser());
 const __dirname = dirname(fileURLToPath(import.meta.url));
 import moment from "moment";
+import { verifyToken } from "./middlewares/authJWS.js";
 
 //public files
 const assets = resolve(__dirname + "/assets");
@@ -57,6 +58,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
+import auth from "./routes/auth.routes.js";
+app.use(auth);
+
+app.use(verifyToken);
+
 //Routes
 
 import roles from "./routes/roles.routes.js";
@@ -68,8 +74,6 @@ app.use(categorias);
 import consulta from "./routes/consultas.routes.js";
 app.use(consulta);
 
-import auth from "./routes/auth.routes.js";
-app.use(auth);
 
 import usuarios from "./routes/usuarios.routes.js";
 app.use(usuarios);
