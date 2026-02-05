@@ -10,6 +10,7 @@ const encriptar = async (password) => {
   return await bcrypt.hash(password, salt);
 };
 
+
 const desencriptar = async (password, reqPassword) => {
   return await bcrypt.compare(password, reqPassword);
 };

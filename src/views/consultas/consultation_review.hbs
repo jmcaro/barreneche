@@ -16,7 +16,6 @@
             </svg>
         </a>
 
-        {{#if (or (eq user.rol 'Administrador') (eq user.rol 'Estudiante'))}}
         {{!-- boton responder --}}
         <button onclick="my_modal_5.showModal()" class="btn btn-sm btn-info ml-4">Responder
             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -26,7 +25,7 @@
                     clip-rule="evenodd" />
             </svg>
         </button>
-        {{/if}}
+      
 
          {{!-- boton ayuda --}}
         <button onclick="my_modal_4.showModal()" class="btn btn-sm btn-warning ml-4">Ayuda <svg
@@ -59,7 +58,7 @@
     {{!-- mODAL CREAR RESPUESTA --}}
     <dialog id="my_modal_5" class="modal">
     <div class="modal-box w-11/12 max-w-5xl">
-        {{>response/createResponse}}
+        {{>response/createResponse}} 
         <div class="modal-action">
         <form method="dialog">
       <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -150,7 +149,7 @@
   </div>
 </dialog>
 
-    <!-- Respuestas a la consulta, si existen -->
+    <!-- Respuestas a la consulta, si existen --> 
     <div class="respuestas-info my-5 p-5 bg-gray-100 rounded-lg shadow-md">
         <h2 class="text-xl font-bold">Respuestas</h2>
         {{#if consulta.Responses}}
